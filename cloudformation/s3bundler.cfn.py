@@ -190,11 +190,11 @@ DLQPolicy = t.add_resource(troposphere.sqs.QueuePolicy(
         {
           "Sid": "dlq1",
           "Effect": "Allow",
-          "Principal": "*",
+          "Principal": "sqs.amazonaws.com",
           "Action": "SQS:SendMessage",
           "Resource": troposphere.GetAtt(sqsdlq,"Arn"),
           "Condition": {
-            "ForAllValues:ArnEquals": {
+            "ArnEquals": {
               "aws:SourceArn": troposphere.GetAtt(ManifestQueue, "Arn")
             }
           }
