@@ -39,7 +39,7 @@ parser.add_argument("-s", "--cidr",
 parser.add_argument("--region", default=os.environ.get('AWS_DEFAULT_REGION', 'us-east-1'))
 args = parser.parse_args()
 
-instancetypes = [x for x in instancespecs.keys() if x.split('.')[0] in args.family]
+instancetypes = [x for x in instancespecs.keys() if x.split('.')[0] in args.family and x.split('.')[1] != "metal"]
 
 ec2 = boto3.client('ec2', region_name=args.region)
 response = ec2.describe_availability_zones(Filters=[{'Name': 'state', 'Values': ['available'] }])
