@@ -261,6 +261,7 @@ if [ "$ephemeral_count" -gt 0 ]; then
 
     echo 'OPTIONS="${OPTIONS} -g /mnt/docker"' >> /etc/sysconfig/docker
     echo 'ECS_DOCKER_GRAPH_PATH=/mnt/docker' >> /etc/ecs/ecs.config
+fi
 
 cat << 'EOF' >> /etc/ecs/ecs.config
 ECS_CLUSTER=''', troposphere.Ref(ECSCluster), "\n",
